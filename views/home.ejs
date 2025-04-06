@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding-top: 20px;
+      }
+      .auth-buttons {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding: 10px 20px;
+        margin-right: 50px;
+      }
+      .auth-buttons a {
+        text-decoration: none;
+        color: white;
+        background-color: #007bff;
+        padding: 8px 15px;
+        border-radius: 5px;
+        margin-left: 10px;
+        font-size: 14px;
+      }
+      .auth-buttons a:hover {
+        background-color: #0056b3;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        margin-top: 5%;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 1000px;
+        text-align: center;
+      }
+      input, button {
+        width: 95%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+      }
+      th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #007bff;
+        color: white;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+  </head>
+  <body>
+    <div class="auth-buttons">
+      <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+    </div>
+
+    <div class="container">
+      <h1>URL Shortener</h1>
+
+      <% if (locals.id) { %>
+        <p><strong>URL Generated:</strong> <a href="http://localhost:8001/url/<%= id %>">http://localhost:8001/url/<%= id %></a></p>
+      <% } %>
+
+      <form method="POST" action="/url">
+        <input type="text" name="url" placeholder="Enter Your Original URL">
+        <button type="submit">Generate</button>
+      </form>
+
+      <% if (locals.urls) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>S. No</th>
+              <th>ShortID</th>
+              <th>Redirect</th>
+              <th>Clicks</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% urls.forEach((url, index) => { %>
+              <tr>
+                <td><%= index + 1 %></td>
+                <td><%= url.shortId %></td>
+                <td><a href="<%= url.redirectURL %>">Visit</a></td>
+                <td><%= url.visitHistory.length %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </body>
+</html>

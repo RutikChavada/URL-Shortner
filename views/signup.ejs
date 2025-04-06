@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+      input, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        cursor: pointer;
+        border: none;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      a {
+        display: block;
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <meta charset="UTF-8">
+    <title>Signup</title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Signup</h2>
+      <form action="/user" method="post">
+        <input type="text" required name="name" placeholder="Full Name">
+        <input type="text" required name="email" placeholder="Email">
+        <input type="password" required name="password" placeholder="Password">
+        <button type="submit">Signup</button>
+      </form>
+      <a href="/login">Already have an account? Login</a>
+    </div>
+  </body>
+</html>
